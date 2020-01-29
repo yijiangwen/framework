@@ -8,6 +8,16 @@ use Faker\Generator;
 trait WithFaker
 {
     /**
+     * Setup the test trait.
+     *
+     * @return void
+     */
+    protected function setUp()
+    {
+        $this->setUpFaker();
+    }
+
+    /**
      * The Faker instance.
      *
      * @var \Faker\Generator

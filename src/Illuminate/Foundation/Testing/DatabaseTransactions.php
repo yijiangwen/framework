@@ -5,6 +5,16 @@ namespace Illuminate\Foundation\Testing;
 trait DatabaseTransactions
 {
     /**
+     * Setup the test trait.
+     *
+     * @return void
+     */
+    protected function setUp()
+    {
+        $this->beginDatabaseTransaction();
+    }
+
+    /**
      * Handle database transactions on the specified connections.
      *
      * @return void

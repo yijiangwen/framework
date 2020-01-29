@@ -7,6 +7,16 @@ use Exception;
 trait WithoutEvents
 {
     /**
+     * Setup the test trait.
+     *
+     * @return void
+     */
+    protected function setUp()
+    {
+        $this->disableEventsForAllTests();
+    }
+
+    /**
      * Prevent all event handles from being executed.
      *
      * @throws \Exception

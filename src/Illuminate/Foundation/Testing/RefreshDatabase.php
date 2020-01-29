@@ -7,6 +7,16 @@ use Illuminate\Contracts\Console\Kernel;
 trait RefreshDatabase
 {
     /**
+     * Setup the test trait.
+     *
+     * @return void
+     */
+    protected function setUp()
+    {
+        $this->refreshDatabase();
+    }
+
+    /**
      * Define hooks to migrate the database before and after each test.
      *
      * @return void

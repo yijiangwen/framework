@@ -7,6 +7,16 @@ use Exception;
 trait WithoutMiddleware
 {
     /**
+     * Setup the test trait.
+     *
+     * @return void
+     */
+    protected function setUp()
+    {
+        $this->disableMiddlewareForAllTests();
+    }
+
+    /**
      * Prevent all middleware from being executed for this test class.
      *
      * @throws \Exception
