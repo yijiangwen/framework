@@ -32,11 +32,11 @@ abstract class TestCase extends BaseTestCase
     protected $app;
 
     /**
-     * The default test traits to setup.
+     * The registered test traits to setup.
      *
      * @var array
      */
-    protected $defaultTraits = [
+    protected $registeredTraits = [
         RefreshDatabase::class,
         DatabaseMigrations::class,
         DatabaseTransactions::class,
@@ -44,13 +44,6 @@ abstract class TestCase extends BaseTestCase
         WithoutEvents::class,
         WithFaker::class,
     ];
-
-    /**
-     * The registered test traits to setup.
-     *
-     * @var array
-     */
-    protected $registeredTraits = [];
 
     /**
      * The callbacks that should be run after the application is created.
@@ -132,13 +125,24 @@ abstract class TestCase extends BaseTestCase
     {
         $uses = array_flip(class_uses_recursive(static::class));
 
-        foreach (array_merge($this->defaultTraits, $this->registeredTraits) as $class) {
+        foreach ($this->registeredTraits as $class) {
             if (isset($uses[$class])) {
                 $this->setUp();
             }
         }
 
         return $uses;
+    }
+
+    /**
+     * Register a test trait.
+     *
+     * @param string $class
+     * @return void
+     */
+    public function registerTrait($class)
+    {
+        $this->registeredTraits[] = $class;
     }
 
     /**
